@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+
+font-size:166%;
+color:#8B8378;
+background-color:#DFDFDF;
+font-family:Gotham, Helvetica Neue, Helvetica, "Arial", sans-serif;
+}
+
+#texto-conteudo{
+	padding:4%;
+	margin-top:0px;
+	height:50%;
+}
+#title {
+text-align:center; 
+font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size:166%;
+color:#8B8378;
+margin: 3% 3% 3% 3%;
+}
+
+.texto {
+color:#FFFFFF;	
+text-align:left; 
+font-family:Gotham, Helvetica Neue, Helvetica, "Arial", sans-serif;
+width: 5%;
+font-size:16px;
+margin: 553% 308% 343% 343%;
+}
+
+#barravoltar {background-color:#d73930;
+height:5%;
+	position: fixed;
+	width: 100%;
+    list-style-type: none;
+    margin: -3% 0% 0% -3.5%;
+    overflow: hidden;
+}
+
+#barravoltar2 {background-color:#d73930;
+height:30px;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+    list-style-type: none;
+    margin: -0.5% 0% 0% -0.5%;
+    
+}
+
+.back {background-image:url(../bot%C3%B5es/backsistem.PNG);
+background-repeat:no-repeat;
+width:300px;
+height:30px;
+margin:2px;
+}
+
+.home {background-image:url(../ícones/back.png);
+background-repeat:no-repeat;
+width:300px;
+height:40px;
+margin:4px 4px 4px 4px;
+
+}
+
+#options {
+	float: center;
+	margin: 0;
+	padding: 50px 0px 0px 0px;
+	width:900px;
+}
+
+#botex {background-image:url(../ícones/excluir.png);
+width:48px;
+height:48px;
+
+}
+
+#botal {background-image: url(../ícones/alterar.png);
+width:48px;
+height:48px;
+}
+
+ul {list-style:none;
+}
+
+.icon1 {background-image:url(../ícones/admin2.png);
+background-repeat:no-repeat;
+margin: 0% 35% 52% 22%;
+width:100px;
+height:200px;
+float: center;
+}
+
+.inputtxt{border-color:#F3F3F3;
+	padding: 5px 0px 5px 5px;
+	border-width:1px;
+	border-style: solid;
+	background-color:#EEE;}
+	
+
+ul li {float: left;}
+
+.icon2 { background-image:url(../ícones/script.png);
+background-repeat:no-repeat;
+margin: 0% 335% 343	% 3%;
+width:100px;
+height:100px;
+}
+
+
+.icon3 {background-image: url(../ícones/categoria.png);
+background-repeat:no-repeat;
+width:100px;
+height:200px;
+margin: 0% 3% 343% -27.5%;
+
+}
+
+.icon4 {background-image: url(../ícones/modelo.png);
+background-repeat:no-repeat;
+width:100px;
+height:200px;
+margin: 0% 3% 343% -43%;
+
+}

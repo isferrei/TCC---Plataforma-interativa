@@ -1,0 +1,116 @@
+DSL
+
+///////////////////////////////////CONFIGURAÇÃO BASICA///////////////////////////////////////
+Chassis892
+*****************************
+
+hostname <insira_aqui__nome_do_routeador>
+!
+boot-start-marker
+boot system flash
+boot-end-marker
+!
+clock timezone GMT 1 0
+clock summer-time GMT+2 recurring last Sun Mar 3:00 last Sun Oct 3:00
+!
+!
+interface Loopback1
+ description --- Interface de Gerencia do roteador
+ ip address <insira_seu_ip_gerencia> 255.255.255.255
+!
+!
+interface GigabitEthernet8
+ description --- Interface de WAN do roteador
+ ip address dhcp
+ no ip redirects
+ no ip proxy-arp
+ duplex full
+ speed 100
+ no cdp enable
+!
+!
+interface GigabitEthernet0
+description --- Interface de LAN do roteador
+ no ip address
+ duplex full
+ speed 100
+!
+interface Vlan1
+ description Interface de LAN do roteador
+ ip address <insira_seu_ip_de_LAN> <insira_a_mascara_de_rede_LAN>
+ load-interval 30
+!
+ip route 0.0.0.0 0.0.0.0 dhcp
+!
+!
+///////////////////////////////////CRYPTOGRAFIA DE SEGURANÇA///////////////////////////////////////
+
+crypto map FILTRO_SERVER_USER
+ description --- Mapa de Cryptografia IPSEC para servidor e usuario
+ set peer <insira_aqui_seu_ip_de_servidor>
+ set security-association lifetime seconds 900
+ set transform-set AES-SHA-TUNNEL
+ set pfs group1
+ match address 1000
+!
+crypto isakmp key <insira_aqui_sua_chave_de_seguranca_entre_servidor_e_usuario> address <insira_aqui_seu_ip_de_servidor>
+!
+crypto ipsec transform-set AES-SHA-TUNNEL esp-aes 256 esp-sha-hmac
+ mode tunnel
+crypto ipsec transform-set 3ESP-SHA-Tunnel esp-3des esp-sha-hmac
+ mode tunnel
+!
+crypto isakmp policy 1
+ encr aes 256
+ authentication pre-share
+ lifetime 28800
+!
+crypto isakmp policy 10
+ encr 3des
+ authentication pre-share
+ lifetime 28800
+!
+access-list 1000 remark --- TRAFEGO ENCRYPTADO ENTRE USUARIO E SERVIDOR
+access-list 1000 permit ip host <insira_seu_ip_gerencia> any
+access-list 1000 permit ip <insira_seu_ip_de_LAN> any
+!
+interface GigabitEthernet8
+crypto map FILTRO_SERVER_USER
+!
+///////////////////////////////////DESCRIÇÃO E ACESSOS DO ROTEADOR///////////////////////////////////////
+!
+banner exec ^CCC
+<digite_aqui_uma_pequena_descrição_do_rotador>
+^C
+banner login ^C
+!
+line con 0
+exec-timeout 2 0
+password <insira_sua_senha_de_acesso>
+transport output telnet
+!
+line aux 0
+password <insira_sua_senha_de_acesso>
+transport input all
+transport output all
+!
+line vty 0 3
+!
+password <insira_sua_senha_de_acesso>
+transport input all
+transport output all
+!
+enable password <<insira_sua_senha_de_acesso_para_modo_de_configuração>
+!
+wr
+
+
+	
+
+
+
+
+
+
+!
+!

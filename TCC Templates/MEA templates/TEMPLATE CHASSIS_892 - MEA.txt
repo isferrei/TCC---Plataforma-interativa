@@ -1,0 +1,85 @@
+MEA
+
+///////////////////////////////////CONFIGURAÇÃO BASICA///////////////////////////////////////
+Chassis892
+*****************************
+
+hostname xxxxxx
+!
+boot-start-marker
+boot system flash
+boot-end-marker
+!
+clock timezone GMT 1 0
+clock summer-time GMT+2 recurring last Sun Mar 3:00 last Sun Oct 3:00
+!
+!
+interface Loopback1
+ description --- Interface de Gerencia do roteador
+ ip address <insira_seu_ip_gerencia> 255.255.255.255
+!
+!
+interface GigabitEthernet8
+ description --- Interface de WAN do roteador
+ no ip redirects
+ no ip proxy-arp
+ duplex full
+ speed 100
+ no cdp enable
+!
+interface GigabitEthernet8.1
+ description --- Sub-Interface de WAN do roteador
+ ecapsulation dot1q <insira_aqui_sua_vlan>
+ ip address <insira_seu_ip_de_wan> <insira_a_mascara_de_rede_WAN> 
+ no ip redirects
+ no ip proxy-arp
+ no cdp enable
+!
+interface GigabitEthernet0
+description --- Interface de LAN do roteador
+ no ip address
+ duplex full
+ speed 100
+!
+interface Vlan1
+ description Interface de LAN do roteador
+ ip address <insira_seu_ip_de_LAN> <insira_a_mascara_de_rede_LAN>
+ load-interval 30
+!
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet8.1 <insira_seu_ip_de_gateway_wan>
+!
+banner exec ^CCC
+<digite_aqui_uma_pequena_descrição_do_rotador>
+^C
+banner login ^C
+!
+line con 0
+exec-timeout 2 0
+password <insira_sua_senha_de_acesso>
+transport output telnet
+!
+line aux 0
+password <insira_sua_senha_de_acesso>
+transport input all
+transport output all
+!
+line vty 0 3
+!
+password <insira_sua_senha_de_acesso>
+transport input all
+transport output all
+!
+enable password <<insira_sua_senha_de_acesso_para_modo_de_configuração>
+!
+wr
+
+
+	
+
+
+
+
+
+
+!
+!
